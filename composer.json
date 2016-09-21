@@ -1,0 +1,25 @@
+{
+    "name": "euskadi31/kafka",
+    "description": "Kafka framework for PHP",
+    "type": "library",
+    "require": {
+        "ext-rdkafka": "~0.9.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable",
+        "leaphub/phpcs-symfony2-standard": "2.0.1",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Axel Etcheverry",
+            "email": "axel@etcheverry.biz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Euskadi31\\Kafka\\": "src/"
+        }
+    }
+}
