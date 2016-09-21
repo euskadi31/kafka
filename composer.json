@@ -3,7 +3,7 @@
     "description": "Kafka framework for PHP",
     "type": "library",
     "require": {
-        "ext-rdkafka": "~0.9.1"
+        "ext-rdkafka": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",
