@@ -1,7 +1,7 @@
 # Kafka Framework
 
 [![Build Status](https://img.shields.io/travis/euskadi31/kafka/master.svg)](https://travis-ci.org/euskadi31/kafka)
-[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/768203f3-aad2-4e23-a3c1-6666bdd3876b.svg)](https://insight.sensiolabs.com/projects/768203f3-aad2-4e23-a3c1-6666bdd3876b)
+[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/27bdfd3f-f66a-4e81-ae93-560c333adc16.svg)](https://insight.sensiolabs.com/projects/27bdfd3f-f66a-4e81-ae93-560c333adc16)
 [![Coveralls](https://img.shields.io/coveralls/euskadi31/kafka.svg)](https://coveralls.io/github/euskadi31/kafka)
 [![HHVM](https://img.shields.io/hhvm/euskadi31/kafka.svg)](https://travis-ci.org/euskadi31/kafka)
 [![Packagist](https://img.shields.io/packagist/v/euskadi31/kafka.svg)](https://packagist.org/packages/euskadi31/kafka)
