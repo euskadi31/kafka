@@ -10,8 +10,6 @@
 
 namespace Euskadi31\Kafka;
 
-use RdKafka;
-
 /**
  * Kafka Abstract Consumer
  *
