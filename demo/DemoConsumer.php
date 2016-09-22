@@ -11,21 +11,22 @@
 namespace Acme;
 
 use RdKafka;
-use Euskadi31\Kafka\ConsumerInterface;
+use Euskadi31\Kafka\AbstractConsumer;
 
 /**
  * Demo Consumer
  *
  * @author Axel Etcheverry <axel@etcheverry.biz>
  */
-class DemoConsumer implements ConsumerInterface
+class DemoConsumer extends AbstractConsumer
 {
     /**
      * {@inheritDoc}
      */
-    public function getTopic()
+    public function configure()
     {
-        return 'test';
+        $this->addTopic('test', [0, 1]);
+        $this->addTopic('test.old', [0]);
     }
 
     /**
@@ -39,25 +40,9 @@ class DemoConsumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
-    public function getPartitions()
-    {
-        return [0, 1];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getOffset()
     {
         return RD_KAFKA_OFFSET_BEGINNING;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTimeout()
-    {
-        return 1000;
     }
 
     /**
@@ -75,7 +60,13 @@ class DemoConsumer implements ConsumerInterface
      */
     public function consume(RdKafka\Message $message)
     {
-        echo $message->payload . PHP_EOL;
+        echo sprintf(
+            '%s: (%s/%d): %s',
+            __CLASS__,
+            $message->topic_name,
+            $message->partition,
+            $message->payload
+        ) . PHP_EOL;
 
         return self::STATUS_CONTINUE;
     }

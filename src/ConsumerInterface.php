@@ -24,11 +24,27 @@ interface ConsumerInterface
     const STATUS_STORE_OFFSET   = 1<<2;
 
     /**
-     * Get topic name
+     * Configure this consumer
      *
-     * @return string
+     * @return void
      */
-    public function getTopic();
+    public function configure();
+
+    /**
+     * Add topic and partitions
+     *
+     * @param string $name       The topic name
+     * @param array  $partitions The partitions for the topic
+     * @return ConsumerInterface
+     */
+    public function addTopic($name, array $partitions);
+
+    /**
+     * Get topic name and partitions
+     *
+     * @return array
+     */
+    public function getTopics();
 
     /**
      * Get topic config
@@ -38,25 +54,11 @@ interface ConsumerInterface
     public function getTopicConfig();
 
     /**
-     * Get partitions of topic
-     *
-     * @return array
-     */
-    public function getPartitions();
-
-    /**
      * Get offset
      *
      * @return integer
      */
     public function getOffset();
-
-    /**
-     * Get timeout (ms) for consuming topic
-     *
-     * @return integer
-     */
-    public function getTimeout();
 
     /**
      * Receive error
