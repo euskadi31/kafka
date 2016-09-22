@@ -23,21 +23,22 @@ Add `euskadi31/kafka` to your `composer.json`:
 namespace Acme;
 
 use RdKafka;
-use Euskadi31\Kafka\ConsumerInterface;
+use Euskadi31\Kafka\AbstractConsumer;
 
 /**
  * Demo Consumer
  *
  * @author Axel Etcheverry <axel@etcheverry.biz>
  */
-class DemoConsumer implements ConsumerInterface
+class DemoConsumer extends AbstractConsumer
 {
     /**
      * {@inheritDoc}
      */
-    public function getTopic()
+    public function configure()
     {
-        return 'test';
+        $this->addTopic('test', [0, 1]);
+        $this->addTopic('test.old', [0]);
     }
 
     /**
@@ -51,25 +52,9 @@ class DemoConsumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
-    public function getPartitions()
-    {
-        return [0, 1];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getOffset()
     {
         return RD_KAFKA_OFFSET_BEGINNING;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTimeout()
-    {
-        return 1000;
     }
 
     /**
@@ -93,6 +78,7 @@ class DemoConsumer implements ConsumerInterface
     }
 }
 
+
 ```
 
 ```php
@@ -102,9 +88,8 @@ $rk = new RdKafka\Consumer();
 $rk->setLogLevel(LOG_DEBUG);
 $rk->addBrokers("10.0.0.1,10.0.0.2");
 
-$myConsumer = new Acme\DemoConsumer();
-
-$consumer = new Euskadi31\Kafka\Consumer($rk, $myConsumer);
+$consumer = new Euskadi31\Kafka\Consumer($rk);
+$consumer->addConsumer(new Acme\DemoConsumer());
 $consumer->run();
 
 ```
